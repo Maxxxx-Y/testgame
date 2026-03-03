@@ -1,0 +1,219 @@
+{
+  "stages": [
+    {
+      "id": "E1_TEMP_TUTORIAL",
+      "name": "战斗 1：温度教学",
+      "map_seed": 101,
+      "terrain_overrides": [
+        {
+          "x": 2,
+          "y": 2,
+          "terrain": "water"
+        },
+        {
+          "x": 5,
+          "y": 5,
+          "terrain": "water"
+        }
+      ],
+      "enemies": [
+        {
+          "type": "enemy_light",
+          "x": 6,
+          "y": 1
+        },
+        {
+          "type": "enemy_light",
+          "x": 6,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "id": "E2_DUAL_AXIS",
+      "name": "战斗 2：温度+电荷",
+      "map_seed": 202,
+      "terrain_overrides": [
+        {
+          "x": 3,
+          "y": 3,
+          "terrain": "metal"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "terrain": "metal"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "terrain": "metal"
+        },
+        {
+          "x": 4,
+          "y": 4,
+          "terrain": "metal"
+        },
+        {
+          "x": 1,
+          "y": 6,
+          "terrain": "water"
+        }
+      ],
+      "enemies": [
+        {
+          "type": "enemy_heavy",
+          "x": 6,
+          "y": 2
+        },
+        {
+          "type": "enemy_light",
+          "x": 6,
+          "y": 5
+        },
+        {
+          "type": "enemy_aquatic",
+          "x": 1,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "id": "E3_TRIPLE_AXIS",
+      "name": "战斗 3：三轴全开",
+      "map_seed": 303,
+      "terrain_overrides": [
+        {
+          "x": 2,
+          "y": 2,
+          "terrain": "metal"
+        },
+        {
+          "x": 2,
+          "y": 5,
+          "terrain": "water"
+        },
+        {
+          "x": 5,
+          "y": 2,
+          "terrain": "water"
+        },
+        {
+          "x": 5,
+          "y": 5,
+          "terrain": "metal"
+        }
+      ],
+      "enemies": [
+        {
+          "type": "enemy_heavy",
+          "x": 6,
+          "y": 1
+        },
+        {
+          "type": "enemy_light",
+          "x": 6,
+          "y": 4
+        },
+        {
+          "type": "enemy_light",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "type": "enemy_aquatic",
+          "x": 2,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "id": "BOSS_ENTROPY_CORE",
+      "name": "Boss：熵核心",
+      "map_seed": 404,
+      "boss": {
+        "hp": 120,
+        "rule_modifiers": [
+          {
+            "id": "B_TEMP_DECAY_03",
+            "desc": "本回合：温度衰减率 0.5→0.3",
+            "effects": [
+              {
+                "type": "set_turn_modifier",
+                "key": "temp_decay_rate",
+                "value": 0.3
+              }
+            ]
+          },
+          {
+            "id": "B_DISCHARGE_RANGE_1",
+            "desc": "本回合：放电距离 +1",
+            "effects": [
+              {
+                "type": "add_turn_modifier",
+                "key": "discharge_range_bonus",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "id": "B_GRAVITY_FLIP_Y",
+            "desc": "本回合：重力方向翻转（上↔下）",
+            "effects": [
+              {
+                "type": "set_turn_modifier",
+                "key": "gravity_map",
+                "value": "flip_y"
+              }
+            ]
+          }
+        ],
+        "every_3_turns": [
+          {
+            "id": "B_GLOBAL_CHARGE_PULSE",
+            "desc": "每3回合：全场电荷 +2",
+            "effects": [
+              {
+                "type": "global_charge_pulse",
+                "amount": 2
+              }
+            ]
+          }
+        ]
+      },
+      "terrain_overrides": [
+        {
+          "x": 3,
+          "y": 3,
+          "terrain": "metal"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "terrain": "metal"
+        },
+        {
+          "x": 3,
+          "y": 4,
+          "terrain": "metal"
+        },
+        {
+          "x": 4,
+          "y": 4,
+          "terrain": "metal"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "terrain": "water"
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "terrain": "water"
+        }
+      ],
+      "enemies": []
+    }
+  ]
+}

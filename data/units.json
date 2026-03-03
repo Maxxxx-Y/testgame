@@ -1,0 +1,34 @@
+{
+  "player": {
+    "hp": 60,
+    "move": 2,
+    "conductivity": 1.0,
+    "weight": "medium",
+    "tags": []
+  },
+  "enemy_light": {
+    "hp": 20,
+    "move": 2,
+    "conductivity": 1.5,
+    "weight": "low",
+    "tags": []
+  },
+  "enemy_heavy": {
+    "hp": 35,
+    "move": 1,
+    "conductivity": 0.5,
+    "weight": "high",
+    "tags": []
+  },
+  "enemy_aquatic": {
+    "hp": 25,
+    "move": 2,
+    "conductivity": 1.0,
+    "weight": "medium",
+    "tags": [
+      "aquatic"
+    ],
+    "water_regen": 3,
+    "shock_taken_mult": 2.0
+  }
+}

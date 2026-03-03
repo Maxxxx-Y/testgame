@@ -1,0 +1,38 @@
+[
+  {
+    "id": "R_DIFFUSION_COIL",
+    "name": "扩散线圈",
+    "desc": "永久：温度扩散倍率 +0.1（0.5→0.6）",
+    "effects": [
+      {
+        "type": "add_global_modifier",
+        "key": "base_temp_diffusion_factor",
+        "value": 0.1
+      }
+    ]
+  },
+  {
+    "id": "R_CONDUCTOR_PLATE",
+    "name": "导电板",
+    "desc": "永久：放电伤害×1.25",
+    "effects": [
+      {
+        "type": "mul_global_modifier",
+        "key": "base_discharge_damage_mult",
+        "value": 1.25
+      }
+    ]
+  },
+  {
+    "id": "R_HEAVY_BOOTS",
+    "name": "重靴",
+    "desc": "永久：撞墙伤害 +2",
+    "effects": [
+      {
+        "type": "add_global_modifier",
+        "key": "base_wall_damage_bonus",
+        "value": 2
+      }
+    ]
+  }
+]

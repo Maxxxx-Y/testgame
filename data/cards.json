@@ -1,0 +1,433 @@
+[
+  {
+    "id": "T_HEAT_40",
+    "name": "升温 +40",
+    "axis": "temp",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 T += 40",
+    "effects": [
+      {
+        "type": "add_temperature",
+        "amount": 40
+      }
+    ]
+  },
+  {
+    "id": "T_COOL_40",
+    "name": "降温 -40",
+    "axis": "temp",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 T -= 40",
+    "effects": [
+      {
+        "type": "add_temperature",
+        "amount": -40
+      }
+    ]
+  },
+  {
+    "id": "T_DIFFUSE_BOOST",
+    "name": "热扩散增强",
+    "axis": "temp",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合温度扩散倍率 0.5→0.8",
+    "effects": [
+      {
+        "type": "set_turn_modifier",
+        "key": "temp_diffusion_factor",
+        "value": 0.8
+      }
+    ]
+  },
+  {
+    "id": "T_STEAM_BURST",
+    "name": "蒸汽爆发",
+    "axis": "temp",
+    "cost": 2,
+    "targeting": "cell",
+    "desc": "选水格且 T≥50：该格单位 12 伤；四邻单位各被推离中心1格",
+    "effects": [
+      {
+        "type": "steam_burst",
+        "damage": 12
+      }
+    ]
+  },
+  {
+    "id": "T_HEAT_LOCK",
+    "name": "热锁定",
+    "axis": "temp",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合温度衰减率设为 0",
+    "effects": [
+      {
+        "type": "set_turn_modifier",
+        "key": "temp_decay_rate",
+        "value": 0.0
+      }
+    ]
+  },
+  {
+    "id": "T_BURNING_PLUS",
+    "name": "燃烧强化",
+    "axis": "temp",
+    "cost": 1,
+    "targeting": "none",
+    "desc": "本回合 burning 伤害 +4",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "burning_bonus_damage",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": "T_MELT_METAL",
+    "name": "熔融（金属化格子）",
+    "axis": "temp",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 terrain=metal",
+    "effects": [
+      {
+        "type": "set_terrain",
+        "terrain": "metal"
+      }
+    ]
+  },
+  {
+    "id": "T_FREEZE_AREA",
+    "name": "冰封",
+    "axis": "temp",
+    "cost": 2,
+    "targeting": "area_2x2",
+    "desc": "目标2×2：有单位则施加 frozen（移动-1），不改温度（最保守）",
+    "effects": [
+      {
+        "type": "apply_status_area",
+        "status": "frozen",
+        "duration": 2
+      }
+    ]
+  },
+  {
+    "id": "T_HEAT_TO_CHARGE",
+    "name": "热转电",
+    "axis": "temp",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 charge += floor(T/20)",
+    "effects": [
+      {
+        "type": "heat_to_charge",
+        "div": 20
+      }
+    ]
+  },
+  {
+    "id": "T_HEAT_OVERLOAD",
+    "name": "热过载",
+    "axis": "temp",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合温度阈值效果×2（燃烧/冻结/蒸发位移步数×2）",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "temp_threshold_multiplier",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": "C_ADD_3",
+    "name": "+3 电荷",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 charge +=3",
+    "effects": [
+      {
+        "type": "add_charge",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "C_SUB_3",
+    "name": "-3 电荷",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 charge -=3",
+    "effects": [
+      {
+        "type": "add_charge",
+        "amount": -3
+      }
+    ]
+  },
+  {
+    "id": "C_CHAIN_RANGE",
+    "name": "连锁增强",
+    "axis": "charge",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合放电传播距离 +1",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "discharge_range_bonus",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": "C_SUPERCONDUCT",
+    "name": "超导",
+    "axis": "charge",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合放电伤害×2",
+    "effects": [
+      {
+        "type": "mul_turn_modifier",
+        "key": "discharge_damage_mult",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": "C_EFIELD",
+    "name": "电场",
+    "axis": "charge",
+    "cost": 2,
+    "targeting": "area_3x3",
+    "desc": "目标3×3：立刻每格 charge +=1（最保守：仅本回合一次）",
+    "effects": [
+      {
+        "type": "add_charge_area",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "C_CAPACITOR",
+    "name": "电容",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "存入该格 charge，下回合开始恢复；该格 charge 设为0",
+    "effects": [
+      {
+        "type": "capacitor_store"
+      }
+    ]
+  },
+  {
+    "id": "C_POLARIZE_METAL",
+    "name": "极化（金属化区域）",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "area_2x2",
+    "desc": "目标2×2 terrain=metal",
+    "effects": [
+      {
+        "type": "set_terrain_area",
+        "terrain": "metal"
+      }
+    ]
+  },
+  {
+    "id": "C_SWAP",
+    "name": "反向极性",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "two_cells",
+    "desc": "交换两格 charge",
+    "effects": [
+      {
+        "type": "swap_charge"
+      }
+    ]
+  },
+  {
+    "id": "C_STATIC_TRAP",
+    "name": "静电陷阱",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格放置陷阱3回合：单位经过则该格 charge +=2",
+    "effects": [
+      {
+        "type": "place_trap",
+        "kind": "static",
+        "duration": 3,
+        "charge_add": 2
+      }
+    ]
+  },
+  {
+    "id": "C_SHOCK_PLUS",
+    "name": "电击强化",
+    "axis": "charge",
+    "cost": 1,
+    "targeting": "none",
+    "desc": "本回合电击伤害×1.5",
+    "effects": [
+      {
+        "type": "mul_turn_modifier",
+        "key": "discharge_damage_mult",
+        "value": 1.5
+      }
+    ]
+  },
+  {
+    "id": "D_PUSH_1",
+    "name": "推动 1 格",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "unit_dir",
+    "desc": "选单位，向方向推1",
+    "effects": [
+      {
+        "type": "push_unit",
+        "steps": 1
+      }
+    ]
+  },
+  {
+    "id": "D_SHOCKWAVE",
+    "name": "冲击波",
+    "axis": "move",
+    "cost": 2,
+    "targeting": "cell",
+    "desc": "以目标格为中心，四邻单位各被推离中心1格",
+    "effects": [
+      {
+        "type": "shockwave",
+        "steps": 1
+      }
+    ]
+  },
+  {
+    "id": "D_GRAV_WELL",
+    "name": "引力井",
+    "axis": "move",
+    "cost": 2,
+    "targeting": "cell",
+    "desc": "目标格放置2回合：每回合位移阶段开始，把四邻单位各拉向中心1",
+    "effects": [
+      {
+        "type": "place_gravity_well",
+        "duration": 2
+      }
+    ]
+  },
+  {
+    "id": "D_RAISE",
+    "name": "抬升",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 height +=1",
+    "effects": [
+      {
+        "type": "add_height",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "D_SINK",
+    "name": "塌陷",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "cell",
+    "desc": "目标格 height -=1",
+    "effects": [
+      {
+        "type": "add_height",
+        "amount": -1
+      }
+    ]
+  },
+  {
+    "id": "D_GRAV_BOOST",
+    "name": "重力增强",
+    "axis": "move",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合所有位移事件 steps +1",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "displacement_steps_bonus",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": "D_TELEPORT",
+    "name": "传送",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "friend_to_empty",
+    "desc": "选我方单位瞬移到空格（不触发位移伤害）",
+    "effects": [
+      {
+        "type": "teleport_friend"
+      }
+    ]
+  },
+  {
+    "id": "D_BOUNCE_WALL",
+    "name": "反弹场",
+    "axis": "move",
+    "cost": 2,
+    "targeting": "none",
+    "desc": "本回合撞墙伤害 +5",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "wall_damage_bonus",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": "D_DISP_DMG_PLUS",
+    "name": "位移触发伤害+3",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "none",
+    "desc": "本回合所有位移额外伤害 +3（叠加到落差/撞墙/相撞）",
+    "effects": [
+      {
+        "type": "add_turn_modifier",
+        "key": "displacement_extra_damage",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": "D_FORCED_RAM",
+    "name": "强制冲撞",
+    "axis": "move",
+    "cost": 1,
+    "targeting": "unit_dir",
+    "desc": "选单位向方向推1，本次相撞基础伤害=8",
+    "effects": [
+      {
+        "type": "push_unit",
+        "steps": 1,
+        "collision_damage_override": 8
+      }
+    ]
+  }
+]
