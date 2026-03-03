@@ -4,13 +4,25 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .util import DIR_ORDER
 
+import os
+import pygame
+
 CELL = 64
 MARGIN = 12
 PANEL_W = 380
 BOTTOM_H = 240
 TOP_H = 44
 
-FONT_NAME = None
+# FONT_NAME = None
+def load_cjk_font(size):
+    root = os.path.dirname(os.path.dirname(__file__))
+    font_path = os.path.join(root, "assets", "fonts", "NotoSansCJKsc-Regular.otf")
+
+    if os.path.exists(font_path):
+        return pygame.font.Font(font_path, size)
+
+    # fallback (should not happen in release)
+    return pygame.font.SysFont("Arial", size)
 
 class UI:
     def __init__(self, state):
@@ -20,8 +32,8 @@ class UI:
         h = MARGIN*2 + TOP_H + CELL*state.h + BOTTOM_H
         self.screen = pygame.display.set_mode((w,h))
         pygame.display.set_caption("Entropy Field Demo")
-        self.font = pygame.font.SysFont("Microsoft YaHei", 18)
-        self.font_small = pygame.font.SysFont("Microsoft YaHei", 14)
+        self.font = load_cjk_font(18)
+        self.font_small = load_cjk_font(14)
         self.clock = pygame.time.Clock()
         self.scroll = 0
 
